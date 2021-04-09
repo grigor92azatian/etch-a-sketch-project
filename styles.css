@@ -8,8 +8,16 @@ body{
     flex-direction: column;
     align-items: center;
 }
-h1, h2, button{
+h1, h2, .button-container{
     margin-bottom: 20px;
+}
+.button-container{
+    display: flex;
+    width: 700px;
+    justify-content: space-between;
+}
+.button-container button{
+    width:170px;
 }
 .grid-container{
     border: 2px solid black;

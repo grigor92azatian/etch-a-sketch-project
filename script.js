@@ -17,11 +17,19 @@ function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContain
     }
 }
 
+function promptChangeResolution(){
+    let usersInputGridSize = prompt("Enter a number");      //prompt user for a number (typeof string)
+        //DOUBLE CHECK NUMBER IS WITHIN RANGE 1-100 BEFORE PROCEEDING, IF IT ISN'T PROMPT FOR ANOTHER NUM
+    usersInputGridSize = parseInt(usersInputGridSize);      //convert string to number
+    gridContainer.innerHTML="";                             //empty out grid-container of its current grid
+    createAndAppendGridTo(gridContainer,usersInputGridSize);    //call upon createGrid with new number
+}
 
 let gridContainer = document.querySelector(".grid-container");
 createAndAppendGridTo(gridContainer,16);            //default of 16x16 grid
 
-let gridSquare = document.querySelector(".grid-square");
+let changeResolutionButton = document.querySelector(".change-resolution");
+changeResolutionButton.addEventListener("click",promptChangeResolution);
 
 
 /*
