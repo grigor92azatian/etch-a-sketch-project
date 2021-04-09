@@ -1,0 +1,1 @@
+In this project, assigned by The Odin Project, we will be attempting (with great difficulty I presume) to make a sketchpad application. 
