@@ -1,13 +1,13 @@
 function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContainer,50) will make 50 rows of 50 blocks and append to element gridContainer
-
-            
     for(let i=0;i<numRowsAndColumns;i++){
         let gridRow = document.createElement("div");
 
         for(let j=0;j<numRowsAndColumns;j++){
             let gridSquare = document.createElement("div");
+            gridSquare.setAttribute("class", "grid-square");
             gridSquare.style.cssText = "flex:auto;" +
                                        "border:1px solid black;";
+            gridSquare.addEventListener("mouseover",(e)=>e.target.style.backgroundColor="black");
             gridRow.appendChild(gridSquare);
         }
 
@@ -15,16 +15,13 @@ function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContain
                                 "display: flex";
         appendTo.appendChild(gridRow);
     }
-
-
-
 }
 
 
 let gridContainer = document.querySelector(".grid-container");
-createAndAppendGridTo(gridContainer,50);
+createAndAppendGridTo(gridContainer,16);            //default of 16x16 grid
 
-
+let gridSquare = document.querySelector(".grid-square");
 
 
 /*
