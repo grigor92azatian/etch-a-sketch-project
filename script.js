@@ -17,6 +17,7 @@ function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContain
     }
 }
 
+
 function promptChangeResolution(){
     let usersInputGridSize = prompt("Enter a number");      //prompt user for a number (typeof string)
         //DOUBLE CHECK NUMBER IS WITHIN RANGE 1-100 BEFORE PROCEEDING, IF IT ISN'T PROMPT FOR ANOTHER NUM
@@ -25,12 +26,31 @@ function promptChangeResolution(){
     createAndAppendGridTo(gridContainer,usersInputGridSize);    //call upon createGrid with new number
 }
 
+function switchToEraseMode(){   //change mouseover event so that it changes black tiles to white
+
+}
+
+function switchToSketchMode(){          //change mouseover event back to changing tiles to black
+
+}
+
+function clearGrid(){                   //clear grid (make all tiles white) but keep grid size same
+
+}
 let gridContainer = document.querySelector(".grid-container");
 createAndAppendGridTo(gridContainer,16);            //default of 16x16 grid
 
 let changeResolutionButton = document.querySelector(".change-resolution");
 changeResolutionButton.addEventListener("click",promptChangeResolution);
 
+let eraseModeButton = document.querySelector(".erase-mode");
+eraseModeButton.addEventListener("click", switchToEraseMode);
+
+let sketchModeButton = document.querySelector(".sketch-mode");
+eraseModeButton.addEventListener("click",switchToSketchMode);
+
+let clearGridButton = document.querySelector(".clear-grid");
+clearGridButton.addEventListener("click", clearGrid);
 
 /*
 
