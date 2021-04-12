@@ -14,7 +14,7 @@ h1, h2, .button-container{
 .button-container{
     display: flex;
     width: 700px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .button-container button{
     width:170px;

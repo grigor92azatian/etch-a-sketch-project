@@ -1,10 +1,12 @@
+let gridSize = 16;          //default grid size, will change upon users input
+
 function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContainer,50) will make 50 rows of 50 blocks and append to element gridContainer
     for(let i=0;i<numRowsAndColumns;i++){
         let gridRow = document.createElement("div");
 
         for(let j=0;j<numRowsAndColumns;j++){
             let gridSquare = document.createElement("div");
-            gridSquare.setAttribute("class", "grid-square");
+            gridSquare.setAttribute("class", "tile-row-"+i+"-col-"+j);
             gridSquare.style.cssText = "flex:auto;" +
                                        "border:1px solid black;";
             gridSquare.addEventListener("mouseover",(e)=>e.target.style.backgroundColor="black");
@@ -17,13 +19,18 @@ function createAndAppendGridTo(appendTo, numRowsAndColumns){    //ie(gridContain
     }
 }
 
+function promptUserForNum(){    //ask user for number 1-100, if less/more/NaN, display error and reprompt user
+        let usersInputGridSize = parseInt(prompt("Enter a number from 1-100"));
+        while (usersInputGridSize<1||usersInputGridSize>100||isNaN(usersInputGridSize)){
+            usersInputGridSize = parseInt(prompt("ERROR: Number out of range, please enter a number from 1-100"));
+        }
+        return usersInputGridSize;
+}
 
-function promptChangeResolution(){
-    let usersInputGridSize = prompt("Enter a number");      //prompt user for a number (typeof string)
-        //DOUBLE CHECK NUMBER IS WITHIN RANGE 1-100 BEFORE PROCEEDING, IF IT ISN'T PROMPT FOR ANOTHER NUM
-    usersInputGridSize = parseInt(usersInputGridSize);      //convert string to number
+function changeResolution(){
+    gridSize = promptUserForNum();
     gridContainer.innerHTML="";                             //empty out grid-container of its current grid
-    createAndAppendGridTo(gridContainer,usersInputGridSize);    //call upon createGrid with new number
+    createAndAppendGridTo(gridContainer,gridSize);    //call upon createGrid with new number
 }
 
 function switchToEraseMode(){   //change mouseover event so that it changes black tiles to white
@@ -35,20 +42,21 @@ function switchToSketchMode(){          //change mouseover event back to changin
 }
 
 function clearGrid(){                   //clear grid (make all tiles white) but keep grid size same
-
+    gridContainer.innerHTML="";                             //empty out grid-container of its current grid
+    createAndAppendGridTo(gridContainer,gridSize);
 }
 let gridContainer = document.querySelector(".grid-container");
-createAndAppendGridTo(gridContainer,16);            //default of 16x16 grid
+createAndAppendGridTo(gridContainer,gridSize);            //default of 16x16 grid
 
 let changeResolutionButton = document.querySelector(".change-resolution");
-changeResolutionButton.addEventListener("click",promptChangeResolution);
-
+changeResolutionButton.addEventListener("click",changeResolution);
+/*
 let eraseModeButton = document.querySelector(".erase-mode");
 eraseModeButton.addEventListener("click", switchToEraseMode);
 
 let sketchModeButton = document.querySelector(".sketch-mode");
 eraseModeButton.addEventListener("click",switchToSketchMode);
-
+*/
 let clearGridButton = document.querySelector(".clear-grid");
 clearGridButton.addEventListener("click", clearGrid);
 
@@ -63,3 +71,4 @@ Dynamic: What is going to change dynamically based on the user's input? This nee
     1. resolution of sketch area
     2. 
 */
+
